@@ -1,5 +1,5 @@
 Red [
-    Title: ""
+    Title: "install-extension.red"
     .links: [
         https://stackoverflow.com/questions/34286515/how-to-install-visual-studio-code-extensions-from-command-line
     ]
