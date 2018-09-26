@@ -35,4 +35,6 @@ if not value? '.redlang [
 
 ]
 
-install: :.install-extension
+install-extension: :.install-extension
+.vscode.install: :.install-extension
+vscode.install: :.install-extension
