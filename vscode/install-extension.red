@@ -9,12 +9,29 @@ if not value? '.redlang [
     do https://redlang.red
 ]
 
-.redlang [call-powershell]
+.redlang [call-powershell log]
 
-.install-extension: function [>extension][
+.install-extension: function [>extension /silent][
 
-    powershell-command: rejoin [{code --install-extension } >extension]
-    .call-powershell/out powershell-command
+    either block? >extension [
+        >extensions: >extension
+        forall >extensions [
+            extension: >extensions/1
+            .install-extension/silent (extension)
+        ]
+        unless silent [
+            print [{log file:} clean-path %install-extension.log ]
+        ]        
+
+    ][
+        powershell-command: rejoin [{code --install-extension } >extension]
+        .call-powershell/out powershell-command
+        .log %install-extension.log (>extension)
+        unless silent [
+            print [{log file:} clean-path %install-extension.log ]
+        ]
+    ]
+
 
 ]
 
