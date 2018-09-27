@@ -26,7 +26,7 @@ if not value? '.redlang [
         return builds
     ]
 
-    log: does [
+    info-path: does [
         print [{log file:} clean-path __VSCODE_EXTENSION_LOG_FILE__ ]
     ]
 
@@ -37,15 +37,15 @@ if not value? '.redlang [
             .install-extension/silent (extension)
         ]
         unless silent [
-            log
+            info-path
         ]        
 
     ][
         powershell-command: rejoin [{code --install-extension } >extension]
         .call-powershell/out powershell-command
-        .log __VSCODE_EXTENSION_LOG_FILE__ (>extension)
+        .log (__VSCODE_EXTENSION_LOG_FILE__) (>extension)
         unless silent [
-            log
+            info-path
         ]
     ]
 ]
