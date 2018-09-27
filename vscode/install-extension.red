@@ -1,8 +1,12 @@
 Red [
+    
     Title: "install-extension.red"
+    UUID: #503f95da-8d2f-40ce-aff4-711b8ebed9cd
+
     .links: [
         https://stackoverflow.com/questions/34286515/how-to-install-visual-studio-code-extensions-from-command-line
     ]
+
 ]
 
 __VSCODE_EXTENSION_LOG_FILE__: %vscode-extensions.log
