@@ -18,7 +18,8 @@ if not value? '.redlang [
 .redlang [call-powershell log]
 
 .install-extension: function [
-    >extension /silent
+    '>extension 
+    /silent
     /_build
 ][
     builds>: 0.0.0.1.1
@@ -45,6 +46,7 @@ if not value? '.redlang [
         ]        
 
     ][
+        >extension: form >extension ; 0.0.0.1.2
         powershell-command: rejoin [{code --install-extension } >extension]
         .call-powershell/out powershell-command
         .log (__VSCODE_EXTENSION_LOG_FILE__) (>extension)
