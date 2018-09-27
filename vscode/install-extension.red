@@ -5,13 +5,30 @@ Red [
     ]
 ]
 
+__VSCODE_EXTENSION_LOG_FILE__: %vscode-extensions.log
+
 if not value? '.redlang [
     do https://redlang.red
 ]
 
 .redlang [call-powershell log]
 
-.install-extension: function [>extension /silent][
+.install-extension: function [
+    >extension /silent
+    /_build
+][
+    builds>: 0.0.0.1.1
+
+    if _build [
+        unless silent [
+            ?? builds>
+        ]
+        return builds
+    ]
+
+    log: does [
+        print [{log file:} clean-path __VSCODE_EXTENSION_LOG_FILE__ ]
+    ]
 
     either block? >extension [
         >extensions: >extension
@@ -20,19 +37,17 @@ if not value? '.redlang [
             .install-extension/silent (extension)
         ]
         unless silent [
-            print [{log file:} clean-path %install-extension.log ]
+            log
         ]        
 
     ][
         powershell-command: rejoin [{code --install-extension } >extension]
         .call-powershell/out powershell-command
-        .log %install-extension.log (>extension)
+        .log __VSCODE_EXTENSION_LOG_FILE__ (>extension)
         unless silent [
-            print [{log file:} clean-path %install-extension.log ]
+            log
         ]
     ]
-
-
 ]
 
 install-extension: :.install-extension
