@@ -1,7 +1,7 @@
 Red [
     
     Title: "install-extension.red"
-    UUID: #503f95da-8d2f-40ce-aff4-711b8ebed9cd
+    UUID: #3b8cd13b-8ed8-4da1-9e3f-e18e82a98f5f
 
     .links: [
         https://stackoverflow.com/questions/34286515/how-to-install-visual-studio-code-extensions-from-command-line
@@ -19,6 +19,7 @@ if not value? '.redlang [
 
 .install-extension: function [
     '>extension 
+    /separator >separator
     /silent
     /_build
 ][
@@ -35,6 +36,10 @@ if not value? '.redlang [
         print [{log file:} clean-path __VSCODE_EXTENSION_LOG_FILE__ ]
     ]
 
+    unless separator [
+        >separator: "(+)"
+    ]
+
     either block? >extension [
         >extensions: >extension
         forall >extensions [
@@ -49,7 +54,7 @@ if not value? '.redlang [
         >extension: form >extension ; 0.0.0.1.2
         powershell-command: rejoin [{code --install-extension } >extension]
         .call-powershell/out powershell-command
-        .log/separator (__VSCODE_EXTENSION_LOG_FILE__) (>extension) "+"
+        .log/separator (__VSCODE_EXTENSION_LOG_FILE__) (>extension) (>separator)
         unless silent [
             info-path
         ]
