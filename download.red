@@ -35,9 +35,11 @@ if not value? '.redlang [
                 subfolder: (>subfolder)
         ]
     ] 
+
+    ; TODO: alternative use curl if it doesn't work or on linux
     .call-powershell/out oneline-powershell
 
 ]
 
-alias .download [.download]
+alias download [.download]
 
