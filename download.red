@@ -41,5 +41,5 @@ if not value? '.redlang [
 
 ]
 
-alias download [.download]
+alias .download [download]
 
