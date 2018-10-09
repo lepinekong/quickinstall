@@ -32,5 +32,4 @@ do https://redlang.red
     call {msiexec /i "} out-file {" TARGETDIR="} param>install-folder {" /qb}
 ]
 
-quickinstall: :.quickinstall
-alias .quickinstall [quickinstall .install install]
+.alias .quickinstall [quickinstall .install install]
