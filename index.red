@@ -8,9 +8,6 @@ Red [
 do https://redlang.red
 .redlang [download alias]
 
-
-alias .quickinstall [quickinstall]
-
 .quickinstall: function [
     param>source-url
     /download-folder
@@ -36,4 +33,4 @@ alias .quickinstall [quickinstall]
 ]
 
 quickinstall: :.quickinstall
-install: :.
+alias .quickinstall [quickinstall .install install]
