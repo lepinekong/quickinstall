@@ -33,9 +33,9 @@ do https://redlang.red
     local>command: {msiexec /i "} out-file {" TARGETDIR="} param>install-folder {" /qb}
 
     unless silent [
-        call local>command   
+        print local>command
     ]
-    
+    call local>command
 ]
 
 .alias .quickinstall [quickinstall .install install]
