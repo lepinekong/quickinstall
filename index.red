@@ -14,6 +14,7 @@ do https://redlang.red
     param>download-folder
     /install-folder
     param>install-folder
+    /silent
 ][
 
     unless download-folder [
@@ -29,7 +30,12 @@ do https://redlang.red
     ]
     out>filename: %yarn-1.10.1.msi
     out-file: rejoin [param>install-folder "\" out>filename]
-    call {msiexec /i "} out-file {" TARGETDIR="} param>install-folder {" /qb}
+    local>command: {msiexec /i "} out-file {" TARGETDIR="} param>install-folder {" /qb}
+
+    unless silent [
+        call local>command   
+    ]
+    
 ]
 
 .alias .quickinstall [quickinstall .install install]
