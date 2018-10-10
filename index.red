@@ -7,6 +7,7 @@ Red [
 
 do https://redlang.red
 .redlang [download alias]
+.quickrun [run]
 
 .quickinstall: function [
     param>source-url
@@ -29,13 +30,8 @@ do https://redlang.red
         out>filename: download (param>source-url) (param>download-folder)
     ]
     out>filename: %yarn-1.10.1.msi
-    out-file: rejoin [param>install-folder "\" out>filename]
-    local>command: {msiexec /i "} out-file {" TARGETDIR="} param>install-folder {" /qb}
-
-    unless silent [
-        print local>command
-    ]
-    call local>command
+    out-file: rejoin [param>download-folder "\" out>filename]
+    .run (out-file)
 ]
 
 .alias .quickinstall [quickinstall .install install]
