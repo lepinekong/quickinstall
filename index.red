@@ -5,7 +5,7 @@ Red [
     }
 ]
 
-unless exists? '.redlang [
+unless value? '.redlang [
     do https://redlang.red
 ]
 .redlang [download alias]
