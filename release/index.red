@@ -5,9 +5,7 @@ Red [
     }
 ]
 
-unless exists? '.redlang [
-    do https://redlang.red
-]
+do https://redlang.red
 .redlang [download alias]
 .quickrun [run]
 
@@ -17,10 +15,9 @@ unless exists? '.redlang [
     param>download-folder
     /install-folder
     param>install-folder
-    /_build
     /silent
-    /_debug
 ][
+
     unless download-folder [
         param>download-folder: "d:\download\devtools"
     ]
