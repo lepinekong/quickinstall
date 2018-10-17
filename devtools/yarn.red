@@ -6,7 +6,7 @@ Red [
         
     }
     Features: [
-        
+        - optional download folder
     ]
     Builds:[
         0.0.0.1.1.1
