@@ -41,20 +41,16 @@ unless value? '.redlang [
 
     switch/default type?/word get/any 'param>download-folder [
         unset! [
-            ;param>download-folder: "d:\download\devtools"
-            download (const>download-url)
+            param>download-folder: "d:\download\devtools"
         ]
         word! string! file! url! block! [
             param>download-folder: to-red-file form param>download-folder
-            .download (const>download-url) (to-local-file param>download-folder)
         ]
     ] [
         throw error 'script 'expect-arg param>download-folder
     ]
 
-    
+    .download (const>download-url) (to-local-file param>download-folder)
 ]
 
 .alias .install-yarn [install-yarn]
-
-
