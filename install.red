@@ -58,6 +58,4 @@ unless value? '.redlang [
     
 ]
 
-.alias .install [install]
-
-
+install: :.install
