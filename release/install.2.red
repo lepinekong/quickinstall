@@ -21,8 +21,8 @@ unless value? '.redlang [
 .quickrun [run]
 
 .install: function [
-    'param>url [word! string! file! path! url!] 
-    /folder 'param>download-folder [word! string! file! url! path!] 
+    'param>url [word! string! file! url!] 
+    'param>download-folder [word! string! file! url! unset!] 
     /_build {Build number for developer}
     /silent {don't print message on console}   
     /_debug {debug mode} 
@@ -38,18 +38,17 @@ unless value? '.redlang [
         return >builds
     ]
 
-    either folder [
-        switch type?/word get/any 'param>download-folder [
-            word! string! file! url! path! [
-                param>download-folder: to-red-file form param>download-folder
-                downloaded-file>out: .download/folder (const>download-url) (to-local-file param>download-folder)
-            ]
+    switch/default type?/word get/any 'param>download-folder [
+        unset! [
+            downloaded-file>out: .download (const>download-url)
         ]
-    ][
-        downloaded-file>out: .download (const>download-url)
+        word! string! file! url! [
+            param>download-folder: to-red-file form param>download-folder
+            downloaded-file>out: .download/folder (const>download-url) (to-local-file param>download-folder)
+        ]
+    ] [
+        throw error 'script 'expect-arg param>download-folder
     ]
-
-
 
     ; --- run install ---
     if .confirm (rejoin ["Do you want to run the downloaded file: " downloaded-file>out]) [
