@@ -58,7 +58,29 @@ unless value? '.redlang [
             downloaded-file>out: .download/folder (const>download-url) (to-local-file param>download-folder)
         ]
     ][
+
+        if word? param>url [
+            ;TODO:
+            command: copy [] 
+            append command '.quickinstall 
+            append command param>url
+
+            if _debug [
+                do-trace 69 [
+                    ?? command
+                ] %install.8.red
+                
+            ]
+            return do command
+        ]
+
         either _debug [
+            do-trace 63 [
+                ?? param>url
+                is-word: word? param>url
+                ?? is-word
+            ] %install.7.red
+            
             downloaded-file>out: .download/_debug (const>download-url)
         ][
             downloaded-file>out: .download (const>download-url)
