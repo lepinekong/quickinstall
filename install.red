@@ -42,7 +42,7 @@ unless value? '.redlang [
     ]
 
     if _debug [
-        do https://redlang.red/to-trace
+        do https://redlang.red/do-trace ; 0.0.0.1.01.7: fixed to-trace 
     ]
 
     either folder [
