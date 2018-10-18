@@ -6,7 +6,7 @@ unless value? '.redlang [
     do https://redlang.red
 ]
 .redlang [alias]
-.quickinstall [install]
+.quickinstall/load-only [install]
 
 .install-yarn: does [
     return .install https://yarnpkg.com/latest.msi
