@@ -39,17 +39,11 @@ unless value? '.redlang [
     ]
 
     either folder [
-        switch type?/word get/any 'param>download-folder [
-            word! string! file! url! path! [
-                param>download-folder: to-red-file form param>download-folder
-                downloaded-file>out: .download/folder (const>download-url) (to-local-file param>download-folder)
-            ]
-        ]
+        param>download-folder: to-red-file form param>download-folder
+        downloaded-file>out: .download/folder (const>download-url) (to-local-file param>download-folder)
     ][
         downloaded-file>out: .download (const>download-url)
     ]
-
-
 
     ; --- run install ---
     if .confirm (rejoin ["Do you want to run the downloaded file: " downloaded-file>out]) [
