@@ -5,7 +5,8 @@ Red [
 unless value? '.redlang [
     do https://redlang.red
 ]
-.redlang [alias install]
+.redlang [alias]
+.quickinstall [install]
 
 .install-yarn: does [
     return .install https://yarnpkg.com/latest.msi
