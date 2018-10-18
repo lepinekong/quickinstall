@@ -1,23 +1,13 @@
-Red [
-    Title: ""
-    Description: {Install VSCode}
-    Features: [
-    
-    ]
-    Builds:[
-        0.0.0.1.1 {Initial build}
-    ]
+Red []
+
+unless value? '.redlang [
+    do https://redlang.red
+]
+.redlang [alias]
+.quickinstall/load-only [install]
+
+.install-vscode: does [
+    return .install https://aka.ms/win32-x64-user-stable
 ]
 
-if not value? '.quickinstall [
-    do https://quickinstall.red
-]
-
-.install-vscode: function [/subfolder '>subfolder][
-    .install/subfolder https://aka.ms/win32-x64-user-stable D:\Download devtools
-]
-
-.alias .install-vscode [
-    install-vscode
-    vscode
-]
+.alias .install-vscode [install-vscode]
