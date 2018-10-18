@@ -17,7 +17,7 @@ Red [
 unless value? '.redlang [
     do https://redlang.red
 ]
-.redlang [alias download to-file confirm]
+.redlang [alias download to-file confirm join]
 .quickrun [run]
 
 .install: function [
@@ -46,7 +46,7 @@ unless value? '.redlang [
     ]
 
     ; --- run install ---
-    if .confirm (rejoin ["Do you want to run the downloaded file: " downloaded-file>out]) [
+    if .confirm (.join ["you want to run the downloaded file:" {"} downloaded-file>out {"}]) [
         .run (downloaded-file>out)
     ]
     
