@@ -3,11 +3,12 @@ Red [
 ]
 
 unless value? '.install [
-    do https://quickinstall.red/install
+    do https://quickinstall.red
 ]
 
 .install-yarn: does [
     return .install https://yarnpkg.com/latest.msi
 ]
 
-.alias .install-yarn [install-yarn]
+install-yarn: :.install-yarn
+
