@@ -58,6 +58,6 @@ unless value? '.redlang [
     
 ]
 
-.alias .install-yarn [install-yarn]
+.alias .install [install]
 
 
