@@ -40,11 +40,11 @@ unless value? '.redlang [
 
     switch/default type?/word get/any 'param>download-folder [
         unset! [
-            downloaded-file>out: .download (const>download-url)
+            downloaded-file>out: download (const>download-url)
         ]
         word! string! file! url! [
             param>download-folder: to-red-file form param>download-folder
-            downloaded-file>out: .download/folder (const>download-url) (to-local-file param>download-folder)
+            downloaded-file>out: .download (const>download-url) (to-local-file param>download-folder)
         ]
     ] [
         throw error 'script 'expect-arg param>download-folder
