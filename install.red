@@ -62,7 +62,12 @@ unless value? '.redlang [
         if word? param>url [
             ;TODO:
             command: copy [] 
-            append command '.quickinstall 
+            
+            either _debug [
+                append command to block! ".quickinstall/_debug"
+            ][
+                append command '.quickinstall 
+            ]
             append command param>url
 
             if _debug [
@@ -94,7 +99,7 @@ unless value? '.redlang [
         ] %install.6.red
         
     ]
-    if .confirm (.join ["you want to run the downloaded file:" {"} downloaded-file>out {"}]) [
+    if .confirm (rejoin ["you want to run the downloaded file:" {"} downloaded-file>out {"}]) [
         .run (downloaded-file>out)
     ]
 ]
