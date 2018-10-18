@@ -51,7 +51,7 @@ unless value? '.redlang [
     ]
 
     ; --- run install ---
-    if .confirm "Do you want to run the installer?" [
+    if .confirm (rejoin ["Do you want to run the downloaded file: " downloaded-file>out]) [
         .run (downloaded-file>out)
     ]
     
