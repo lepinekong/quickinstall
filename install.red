@@ -17,6 +17,9 @@ Red [
 unless value? '.redlang [
     do https://redlang.red
 ]
+
+quit
+
 .redlang [alias download to-file confirm join]
 .quickrun [run]
 
