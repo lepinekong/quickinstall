@@ -1,6 +1,7 @@
 Red [
     File: "install"
     Title: "install"
+    UUID: #6abaca28-8460-4a14-8b70-7374070a7dc8
     Html-Proxy: https://
     Description: {
         
@@ -9,7 +10,14 @@ Red [
         
     ]
     Builds:[
-
+    ]
+    TODO: [
+        Bugs: [
+            1 {failed for 
+            https://download.visualstudio.microsoft.com/download/pr/7010cdb4-ae43-408b-8c9f-5f94101a1c70/3e1ae56a072c7c397f10278d7643b3e9/dotnet-sdk-2.1.403-win-gs-x64.exe
+            on page https://www.microsoft.com/net/learn/dotnet/hello-world-
+            }
+        ]
     ]
 
 ]
@@ -17,9 +25,6 @@ Red [
 unless value? '.redlang [
     do https://redlang.red
 ]
-
-quit
-
 .redlang [alias download to-file confirm join]
 .quickrun [run]
 
@@ -33,6 +38,7 @@ quit
     const>download-url: form :param>url
 
     >builds: [
+		[0.0.0.1.2.2 {initial release}]
         0.0.0.0.1.6 {adding _debug message}
         0.0.0.0.1.5 {buggy}
     ] 
