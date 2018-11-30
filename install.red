@@ -1,7 +1,7 @@
 Red [
     File: "install"
     Title: "install"
-    UUID: #5856063e-2b02-4bc8-ab6b-6976476b...
+    UUID: #c4d3edef-d8b9-437e-838d-eae94dfe895c
     Html-Proxy: https://
     Description: {
         
@@ -35,10 +35,20 @@ unless value? '.redlang [
     /silent {don't print message on console}   
     /_debug {debug mode} 
 ][
+
+    if _debug [
+        do https://redlang.red/do-trace ; 0.0.0.1.01.7: fixed to-trace 
+    ]    
     
     const>download-url: form :param>url
 
+    do-trace 45 [
+        ?? const>download-url
+    ] %install.5.red
+    
+
     >builds: [
+		[0.0.0.1.2.5 {_debug}]
 		[0.0.0.1.2.3 {remoeved ask "install"}]
 		[0.0.0.1.2.3 {temp ask "install"}]
 		[0.0.0.1.2.3 {print ["debug: command" command "cannot be executed"]}]
@@ -54,68 +64,82 @@ unless value? '.redlang [
         return >builds
     ]
 
-    if _debug [
-        do https://redlang.red/do-trace ; 0.0.0.1.01.7: fixed to-trace 
+
+    ..install-url: func[
+        /folder
+        /_debug
+    ][
+    ][
+        either _debug [
+            do-trace 70 [
+                ?? const>download-url
+            ] %install.5.red
+            either folder [
+                downloaded-file>out: .download/_debug (const>download-url) (to-local-file param>download-folder)
+            ][
+                downloaded-file>out: .download/folder/_debug (const>download-url) (to-local-file param>download-folder)
+            ]
+            
+        ][
+            either folder [
+                downloaded-file>out: .download/folder (const>download-url) (to-local-file param>download-folder)
+            ][
+                downloaded-file>out: .download (const>download-url) (to-local-file param>download-folder)
+            ]
+            
+        ]        
+    ]
+
+    ..install-keyword: func[/_debug /local >url][
+
+        >url: to-url rejoin ["https://quickinstall.red/" param>url]
+
+        do (>url)
+        either _debug [
+            >command: rejoin ["install-" param>url "/_debug"]
+            do-trace 89 [
+                ?? >url
+                ?? >command
+            ] %install.5.red
+            
+        ][
+            >command: rejoin ["install-" param>url]
+        ]
+        do (>command)
+            do-trace 102 [
+                ?? >command
+            ] %install.5.red        
     ]
 
     either folder [
         if _debug [
-            do-trace 50 [
+            do-trace 101 [
                 ?? param>download-folder
             ] %install.6.red
         ]
         param>download-folder: to-red-file form param>download-folder
-        either _debug [
-            downloaded-file>out: .download/folder/_debug (const>download-url) (to-local-file param>download-folder)
-        ][
-            downloaded-file>out: .download/folder (const>download-url) (to-local-file param>download-folder)
-        ]
+
+        ..install-url
     ][
 
-        if word? param>url [
-            ;TODO:
-            command: copy [] 
-            
+        either word? param>url [
             either _debug [
-                append command to block! ".quickinstall/_debug"
+                do-trace 114 [
+                    ?? param>url
+                ] %install.7.red
+                downloaded-file>out: ..install-keyword/_debug param>url
             ][
-                append command '.quickinstall 
+                downloaded-file>out: ..install-keyword param>url
             ]
-            append command param>url
-
-            if _debug [
-                do-trace 69 [
-                    ?? command
-                ] %install.8.red
-                
-            ]
-
-            if error? try [
-                return do command
-            ][
-                if _debug [
-                    print ["debug: command" command "cannot be executed"]
-                ]
-            ]
-            
-        ]
-
-        either _debug [
-            do-trace 63 [
-                ?? param>url
-                is-word: word? param>url
-                ?? is-word
-            ] %install.7.red
-            
-            downloaded-file>out: .download/_debug (const>download-url)
         ][
-            downloaded-file>out: .download (const>download-url)
+            downloaded-file>out: ..install-url (param>url)
         ]
+
     ]
 
     ; --- run install ---
     if _debug [
-        do-trace 70 [
+        do-trace 128 [
             ?? downloaded-file>out
         ] %install.6.red
         
