@@ -1,7 +1,7 @@
 Red [
     File: "install"
     Title: "install"
-    UUID: #331f2569-0aed-4256-9ba3-88a545394dce
+    UUID: #f6b0ae72-2d11-4c85-bb61-4e8e1d62b539
     Html-Proxy: https://
     Description: {
         
@@ -50,6 +50,7 @@ unless value? '.redlang [
 
 
     >builds: [
+		[0.0.0.1.2.5 {            param>download-folder: to-red-file form param>download-folder}]
 		[0.0.0.1.2.5 {fixed stupid bug []}]
 		[0.0.0.1.2.5 {_debug}]
 		[0.0.0.1.2.5 {_debug}]
@@ -74,24 +75,20 @@ unless value? '.redlang [
         /folder
         /_debug
     ][
-        either _debug [
-            do-trace 70 [
-                ?? const>download-url
-            ] %install.5.red
-            either folder [
-                downloaded-file>out: .download/_debug (const>download-url) (to-local-file param>download-folder)
+        either folder [
+            param>download-folder: to-red-file form param>download-folder
+            either _debug [
+                downloaded-file>out: .download/folder/_debug (const>download-url) (to-local-file param>download-folder)
             ][
                 downloaded-file>out: .download/folder/_debug (const>download-url) (to-local-file param>download-folder)
             ]
-            
         ][
-            either folder [
-                downloaded-file>out: .download/folder (const>download-url) (to-local-file param>download-folder)
+            either _debug [
+                downloaded-file>out: .download/_debug (const>download-url)
             ][
-                downloaded-file>out: .download (const>download-url) (to-local-file param>download-folder)
-            ]
-            
-        ]        
+                downloaded-file>out: .download (const>download-url)
+            ]            
+        ]       
     ]
 
     ..install-keyword: func[/_debug /local >url][
