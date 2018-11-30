@@ -1,7 +1,7 @@
 Red [
     File: "install"
     Title: "install"
-    UUID: #6abaca28-8460-4a14-8b70-7374070a7dc8
+    UUID: #5856063e-2b02-4bc8-ab6b-6976476b...
     Html-Proxy: https://
     Description: {
         
@@ -35,9 +35,13 @@ unless value? '.redlang [
     /silent {don't print message on console}   
     /_debug {debug mode} 
 ][
+    
     const>download-url: form :param>url
 
     >builds: [
+		[0.0.0.1.2.3 {remoeved ask "install"}]
+		[0.0.0.1.2.3 {temp ask "install"}]
+		[0.0.0.1.2.3 {print ["debug: command" command "cannot be executed"]}]
 		[0.0.0.1.2.2 {initial release}]
         0.0.0.0.1.6 {adding _debug message}
         0.0.0.0.1.5 {buggy}
@@ -85,7 +89,15 @@ unless value? '.redlang [
                 ] %install.8.red
                 
             ]
-            return do command
+
+            if error? try [
+                return do command
+            ][
+                if _debug [
+                    print ["debug: command" command "cannot be executed"]
+                ]
+            ]
+            
         ]
 
         either _debug [
