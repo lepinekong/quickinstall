@@ -1,7 +1,7 @@
 Red [
     File: "install"
     Title: "install"
-    UUID: #c7ecf87d-a5be-4de8-a056-7b9f1a2e2a1a
+    UUID: #2765ae6c-0351-443f-ae87-ca9e200cdda7
     Html-Proxy: https://
     Description: {
         
@@ -50,6 +50,7 @@ unless value? '.redlang [
 
 
     >builds: [
+		[0.0.0.1.2.5 {_debug}]
 		[0.0.0.1.2.5 {_debug}]
 		[0.0.0.1.2.5 {_debug}]
 		[0.0.0.1.2.3 {remoeved ask "install"}]
@@ -143,13 +144,16 @@ unless value? '.redlang [
                 downloaded-file>out: ..install-keyword param>url
             ]
         ][
-            if _debug [
+            either _debug [
                 do-trace 146 [
                     print "executing ..install-url"
                 ] %install.5.red
+                downloaded-file>out: ..install-url/_debug
                 
+            ][
+                downloaded-file>out: ..install-url
             ]
-            downloaded-file>out: ..install-url
+            
         ]
 
     ]
