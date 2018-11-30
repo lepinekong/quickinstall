@@ -1,7 +1,7 @@
 Red [
     File: "install"
     Title: "install"
-    UUID: #2765ae6c-0351-443f-ae87-ca9e200cdda7
+    UUID: #331f2569-0aed-4256-9ba3-88a545394dce
     Html-Proxy: https://
     Description: {
         
@@ -50,6 +50,7 @@ unless value? '.redlang [
 
 
     >builds: [
+		[0.0.0.1.2.5 {fixed stupid bug []}]
 		[0.0.0.1.2.5 {_debug}]
 		[0.0.0.1.2.5 {_debug}]
 		[0.0.0.1.2.5 {_debug}]
@@ -72,7 +73,6 @@ unless value? '.redlang [
     ..install-url: func[
         /folder
         /_debug
-    ][
     ][
         either _debug [
             do-trace 70 [
