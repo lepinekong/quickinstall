@@ -1,7 +1,7 @@
 Red [
     File: "install"
     Title: "install"
-    UUID: #d430d7eb-41eb-4bfb-beb6-41708057ac75
+    UUID: #934f2229-230c-4593-b5ee-42c4f7842be3
     Html-Proxy: https://
     Description: {
         
@@ -50,6 +50,7 @@ unless value? '.redlang [
 
 
     >builds: [
+		[0.0.0.1.2.6 {if _debug [}]
 		[0.0.0.1.2.6 {exit ; 0.0.0.1.2.6}]
 		[0.0.0.1.2.5 {release}]
 		[0.0.0.1.2.5 {            param>download-folder: to-red-file form param>download-folder}]
@@ -108,10 +109,15 @@ unless value? '.redlang [
         ][
             >command: rejoin ["install-" param>url]
         ]
-        do (>command)
+        
+        if _debug [
             do-trace 102 [
                 ?? >command
-            ] %install.5.red        
+            ] %install.5.red  
+        ]
+      
+        do (>command)
+        
     ]
 
     either folder [
