@@ -1,7 +1,7 @@
 Red [
     File: "install"
     Title: "install"
-    UUID: #934f2229-230c-4593-b5ee-42c4f7842be3
+    UUID: #cda22af6-0e2b-41bc-b147-929f2faabf56
     Html-Proxy: https://
     Description: {
         
@@ -50,6 +50,7 @@ unless value? '.redlang [
 
 
     >builds: [
+		[0.0.0.1.2.6 {install: function [ .install-extension (param>details)}]
 		[0.0.0.1.2.6 {if _debug [}]
 		[0.0.0.1.2.6 {exit ; 0.0.0.1.2.6}]
 		[0.0.0.1.2.5 {release}]
@@ -175,4 +176,23 @@ unless value? '.redlang [
     ]
 ]
 
-install: :.install
+install: function [
+    'param>what [word! string! file! path! url!] 
+    'param>details [word! string! file! path! url! unset!]
+][
+    switch/default type?/word get/any 'param>details [
+        unset! [
+            .install (param>what)
+        ]
+        word! string! url! file! [
+            either (param>what) = 'extension [
+                param>details: form :param>details
+                .install-extension (param>details)
+            ][
+                ;TODO:
+            ]
+        ]
+    ][
+        throw error 'script 'expect-arg param>details
+    ]
+]
