@@ -1,7 +1,7 @@
 Red [
     File: "install"
     Title: "install"
-    UUID: #cda22af6-0e2b-41bc-b147-929f2faabf56
+    UUID: #580eb19a-cfc4-44f3-8e96-ddd80f35d10f
     Html-Proxy: https://
     Description: {
         
@@ -50,6 +50,7 @@ unless value? '.redlang [
 
 
     >builds: [
+		[0.0.0.1.2.7 {minor refactor >local-download-folder: to-local-file param>download-folder}]
 		[0.0.0.1.2.6 {install: function [ .install-extension (param>details)}]
 		[0.0.0.1.2.6 {if _debug [}]
 		[0.0.0.1.2.6 {exit ; 0.0.0.1.2.6}]
@@ -81,10 +82,11 @@ unless value? '.redlang [
     ][
         either folder [
             param>download-folder: to-red-file form param>download-folder
+            >local-download-folder: to-local-file param>download-folder
             either _debug [
-                downloaded-file>out: .download/folder/_debug (const>download-url) (to-local-file param>download-folder)
+                downloaded-file>out: .download/folder/_debug (const>download-url) (>local-download-folder)
             ][
-                downloaded-file>out: .download/folder/_debug (const>download-url) (to-local-file param>download-folder)
+                downloaded-file>out: .download/folder/_debug (const>download-url) (>local-download-folder)
             ]
         ][
             either _debug [
