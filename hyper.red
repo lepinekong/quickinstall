@@ -1,10 +1,16 @@
 Red [
     Title: "hyper"
     File: "hyper"
-    UUID: #3e57d6f8-d43f-43c9-880b-e3fd7db73521
+    UUID: #f37bfc50-ccb8-44c4-bc73-1fddef6e0c96
     Builds: [
+		[0.0.0.1.1.2 {{LOCALAPPDATA} https://ss64.com/nt/syntax-variables.html}]
+		[0.0.0.1.1.2 {print ["Hyper installed in" get-env "LOCALAPPDATA"]}]
 		[0.0.0.1.1.1 {initial build}]
 		[0.0.0.1.1.4 {added builds []}]
+    ]
+    Links: [
+        {LOCALAPPDATA} https://ss64.com/nt/syntax-variables.html
+        https://medium.freecodecamp.org/how-to-build-blazing-fast-rest-apis-with-node-js-mongodb-fastify-and-swagger-114e062db0c9
     ]
     Template: [
         Url: https://codeops.red/res/templates/install.red
@@ -51,6 +57,7 @@ unless value? '.install [
     ][
         ret>value: .install (>url)
     ]
+    print ["Hyper installed in" get-env "LOCALAPPDATA"]
     return ret>value   
 ]
 
