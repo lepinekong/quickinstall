@@ -1,37 +1,33 @@
 Red [
-    Title: "red"
-    File: "red"
-    UUID: #19765291-2b46-4cf5-954e-906b4817b299
+    Title: "hyper"
+    File: "hyper"
+    UUID: #3e57d6f8-d43f-43c9-880b-e3fd7db73521
     Builds: [
-		[0.0.0.1.1.2 {>install-folder: .ask-folder/title "Choose install directory:"}]
-		[0.0.0.1.1.1 {initial}]
+		[0.0.0.1.1.1 {initial build}]
+		[0.0.0.1.1.4 {added builds []}]
     ]
     Template: [
         Url: https://codeops.red/res/templates/install.red
         UUID: #fc3d5a36-47ed-4000-9c98-8503fbfc144c
         Date: 2018-12-02
-        Location: 'France
+        Location: 'Cambodia
         Builds: [
-		    [0.0.0.1.1.3 {abort downloading" "https://static.red-lang.org/dl/win/red-064.exe"}]
+		    [0.0.0.1.1.3 {abort downloading" "https://releases.hyper.is/download/win"}]
             [0.0.0.1.1.2 {>url: Select >platforms-urls environment>OS}]
             [0.0.0.1.1.1 {initial build}]
         ]
     ]    
 ]
 
-unless value? '.ask-folder [
-    do https://redlang.red/ask-folder
-]
-
 unless value? '.install [
     do https://quickinstall.red
 ]
 
-.install-red: function[
+.install-hyper: function[
     /_debug
 ][
     >platforms-urls: [
-        Windows: https://static.red-lang.org/dl/win/red-064.exe
+        Windows: https://releases.hyper.is/download/win
     ]
     environment>OS: system/platform
 
@@ -41,24 +37,21 @@ unless value? '.install [
         print [{no download url found for} {nodejs} {in} environment>OS {environment.}]
         >url: ask "Give download url:"
         if >url = "" [
-            print ["abort downloading" "https://static.red-lang.org/dl/win/red-064.exe"]
+            print ["abort downloading" "https://releases.hyper.is/download/win"]
             return false
         ]
         
     ]    
-
-    >install-folder: .ask-folder/title "Choose install directory:"
-
     either _debug [
         do-trace 20 [
             ?? >url
-        ] %red
+        ] %hyper
         
-        ret>value: .install/_debug/folder (>url) (>install-folder)
+        ret>value: .install/_debug (>url)
     ][
-        ret>value: .install/folder (>url) (>install-folder)
+        ret>value: .install (>url)
     ]
     return ret>value   
 ]
 
-install-red: :.install-red
+install-hyper: :.install-hyper
