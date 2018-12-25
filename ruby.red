@@ -1,8 +1,9 @@
 Red [
     Title: "ruby"
     File: "ruby"
-    UUID: #c94bcbed-ab1b-4ec6-9de0-af3db899eab7
+    UUID: #67658f3b-4a83-48b2-86cb-d70a4423897b
     Builds: [
+		[0.0.0.1.1.1 {fixed bug environment>OS: system/platform/OS}]
 		[0.0.0.1.1.1 {intial}]
 		[0.0.0.1.1.4 {added builds []}]
     ]
@@ -29,12 +30,19 @@ unless value? '.install [
     >platforms-urls: [
         Windows: https://github.com/oneclick/rubyinstaller2/releases/download/rubyinstaller-2.5.3-1/rubyinstaller-devkit-2.5.3-1-x64.exe
     ]
-    environment>OS: system/platform
+    environment>OS: system/platform/OS
+
+    if _debug [
+        do-trace 35 [
+            ?? environment>OS
+        ] %ruby.1.red
+        
+    ]
 
     >url: Select >platforms-urls environment>OS
 
     if none? >url [
-        print [{no download url found for} {nodejs} {in} environment>OS {environment.}]
+        print [{no download url found for} {ruby} {in} environment>OS {environment.}]
         >url: ask "Give download url:"
         if >url = "" [
             print ["abort downloading" "https://github.com/oneclick/rubyinstaller2/releases/download/rubyinstaller-2.5.3-1/rubyinstaller-devkit-2.5.3-1-x64.exe"]
@@ -43,7 +51,7 @@ unless value? '.install [
         
     ]    
     either _debug [
-        do-trace 20 [
+        do-trace 46 [
             ?? >url
         ] %ruby
         
