@@ -1,8 +1,9 @@
 Red [
     File: "install"
     Title: "install"
-    UUID: #e3ee09ed-66f2-47ab-b521-9902960c1eb9
+    UUID: #fabc7d70-19c3-4f20-9610-fa28c91323db
     Builds: [
+		[0.0.0.1.2.1 {extern>config: load https://quickinstall.red/config/install.config}]
 		[0.0.0.1.2.9 {fixed bug}]
 		[0.0.0.1.2.9 {fixed bug}]
 		[0.0.0.1.2.9 {fixed bug}]
@@ -117,10 +118,22 @@ unless value? '.redlang [
     ]
 
     ..install-keyword: func[/_debug /local >url][
-
+        
         >url: to-url rejoin ["https://quickinstall.red/" param>url]
 
-        do (>url)
+        if error? try [
+            do (>url)
+        ][
+            ;TODO: load from install.config
+            extern>config: load https://quickinstall.red/config/install.config
+            extern>param: select (extern>config) (param>url)
+            if none? (extern>param) [
+                print ["cannot install" (param>url) ]
+                return false
+            ]
+        ]
+        
+
         either _debug [
             >command: rejoin ["install-" param>url "/_debug"]
             do-trace 89 [
