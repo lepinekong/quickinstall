@@ -1,8 +1,9 @@
 Red [
     File: "install"
     Title: "install"
-    UUID: #43cfb83b-5abd-4080-a8bb-853c2d44fb8f
+    UUID: #dd429848-114b-41e5-97cd-3c5f6378ae55
     Builds: [
+		[0.0.0.2.1.1 {extern>config: load https://quickinstall.red/config/install.config renumbering lines for do-trace}]
 		[0.0.0.2.1.1 {extern>config: load https://quickinstall.red/config/install.config}]
 		[0.0.0.1.2.9 {fixed bug}]
 		[0.0.0.1.2.9 {fixed bug}]
@@ -71,7 +72,7 @@ unless value? '.redlang [
     const>download-url: form :param>url
 
     if _debug [
-        do-trace 67 [
+        do-trace 74 [
             ?? const>download-url
         ] %install.5.red
     ]
@@ -91,7 +92,7 @@ unless value? '.redlang [
         /folder
     ][
         if _debug [
-            do-trace 87 [
+            do-trace 94 [
                 ?? const>download-url
             ] %install.8.red
             
@@ -106,7 +107,7 @@ unless value? '.redlang [
             ]
         ][
             either _debug [
-                do-trace 102 [
+                do-trace 109 [
                     ?? const>download-url
                 ] %install.8.red
                 
@@ -136,7 +137,7 @@ unless value? '.redlang [
 
         either _debug [
             >command: rejoin ["install-" param>url "/_debug"]
-            do-trace 89 [
+            do-trace 139 [
                 ?? >url
                 ?? >command
             ] %install.5.red
@@ -145,7 +146,7 @@ unless value? '.redlang [
         ]
         
         if _debug [
-            do-trace 102 [
+            do-trace 148 [
                 ?? >command
             ] %install.5.red  
         ]
@@ -154,14 +155,14 @@ unless value? '.redlang [
     ]
 
     if _debug [
-        do-trace 129 [
+        do-trace 157 [
             ?? folder
         ] %install.8.red
         
     ]
     either folder [
         if _debug [
-            do-trace 141 [
+            do-trace 164 [
                 ?? param>download-folder
             ] %install.6.red
         ]
@@ -180,7 +181,7 @@ unless value? '.redlang [
 
         either word? param>url [
             either _debug [
-                do-trace 158 [
+                do-trace 183 [
                     ?? param>url
                 ] %install.7.red
                 downloaded-file>out: ..install-keyword/_debug param>url
@@ -190,7 +191,7 @@ unless value? '.redlang [
             exit ; 0.0.0.1.2.6
         ][
             if _debug [
-                do-trace 168 [
+                do-trace 193 [
                     print "executing ..install-url"
                 ] %install.5.red
             ]
@@ -200,7 +201,7 @@ unless value? '.redlang [
 
     ; --- run install ---
     if _debug [
-        do-trace 128 [
+        do-trace 203 [
             ?? downloaded-file>out
         ] %install.6.red
         
@@ -221,7 +222,7 @@ install: function [
 
     if _debug [
         type: type?/word get/any 'param>details
-        do-trace 200 [
+        do-trace 224 [
             ?? type
         ] %install.8.red
     ]
@@ -250,7 +251,7 @@ install: function [
 
         url! [
             either _debug [
-                do-trace 218 [
+                do-trace 253 [
                     ?? param>what
                 ] %install.8.red
                 
