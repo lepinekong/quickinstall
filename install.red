@@ -1,8 +1,9 @@
 Red [
     File: "install"
     Title: "install"
-    UUID: #30a23acf-0713-4457-97d5-c4906f223723
+    UUID: #d4db7147-5173-47fe-971d-173c6ccad788
     Builds: [
+		[0.0.0.1.2.9 {test OK for ruby}]
 		[0.0.0.1.2.9 {removed if confirmed download in src\.install.red\0.0.0.1\02\install.9.red}]
 		[0.0.0.1.2.7 {minor refactor >local-download-folder: to-local-file param>download-folder}]
 		[0.0.0.1.2.6 {install: function [ .install-extension (param>details)}]
