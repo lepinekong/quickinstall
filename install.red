@@ -1,13 +1,36 @@
 Red [
     File: "install"
     Title: "install"
-    UUID: #580eb19a-cfc4-44f3-8e96-ddd80f35d10f
-    Html-Proxy: https://
+    UUID: #30a23acf-0713-4457-97d5-c4906f223723
+    Builds: [
+		[0.0.0.1.2.9 {removed if confirmed download in src\.install.red\0.0.0.1\02\install.9.red}]
+		[0.0.0.1.2.7 {minor refactor >local-download-folder: to-local-file param>download-folder}]
+		[0.0.0.1.2.6 {install: function [ .install-extension (param>details)}]
+		[0.0.0.1.2.6 {if _debug }]
+		[0.0.0.1.2.6 {exit ; 0.0.0.1.2.6}]
+		[0.0.0.1.2.5 {release}]
+		[0.0.0.1.2.5 {            param>download-folder: to-red-file form param>download-folder}]
+		[0.0.0.1.2.5 {fixed stupid bug []}]
+		[0.0.0.1.2.5 {_debug}]
+		[0.0.0.1.2.5 {_debug}]
+		[0.0.0.1.2.5 {_debug}]
+		[0.0.0.1.2.3 {remoeved ask "install"}]
+		[0.0.0.1.2.3 {temp ask "install"}]
+		[0.0.0.1.2.3 {print ["debug: command" command "cannot be executed"]}]
+		[0.0.0.1.2.2 {initial release}]
+        0.0.0.0.1.6 {adding _debug message}
+        0.0.0.0.1.5 {buggy}        
+    ]    
+    Html-Proxy: https://quickinstall.red/install
     Description: {
-        
+        install library
     }
     Features: [
-        
+        1 {download the file}
+        1.1 {if keyword call install-<keyword>}
+        1.2 {}
+        2 {run downloaded file if confirmation}
+        2.1 {unzip the file before if necessary}
     ]
     Builds:[
     ]
@@ -19,7 +42,6 @@ Red [
             }
         ]
     ]
-
 ]
 
 unless value? '.redlang [
@@ -43,29 +65,13 @@ unless value? '.redlang [
     const>download-url: form :param>url
 
     if _debug [
-        do-trace 45 [
+        do-trace 67 [
             ?? const>download-url
         ] %install.5.red
     ]
 
 
     >builds: [
-		[0.0.0.1.2.7 {minor refactor >local-download-folder: to-local-file param>download-folder}]
-		[0.0.0.1.2.6 {install: function [ .install-extension (param>details)}]
-		[0.0.0.1.2.6 {if _debug [}]
-		[0.0.0.1.2.6 {exit ; 0.0.0.1.2.6}]
-		[0.0.0.1.2.5 {release}]
-		[0.0.0.1.2.5 {            param>download-folder: to-red-file form param>download-folder}]
-		[0.0.0.1.2.5 {fixed stupid bug []}]
-		[0.0.0.1.2.5 {_debug}]
-		[0.0.0.1.2.5 {_debug}]
-		[0.0.0.1.2.5 {_debug}]
-		[0.0.0.1.2.3 {remoeved ask "install"}]
-		[0.0.0.1.2.3 {temp ask "install"}]
-		[0.0.0.1.2.3 {print ["debug: command" command "cannot be executed"]}]
-		[0.0.0.1.2.2 {initial release}]
-        0.0.0.0.1.6 {adding _debug message}
-        0.0.0.0.1.5 {buggy}
     ] 
 
     if _build [
@@ -75,11 +81,15 @@ unless value? '.redlang [
         return >builds
     ]
 
-
     ..install-url: func[
         /folder
-        /_debug
     ][
+        if _debug [
+            do-trace 87 [
+                ?? const>download-url
+            ] %install.8.red
+            
+        ]
         either folder [
             param>download-folder: to-red-file form param>download-folder
             >local-download-folder: to-local-file param>download-folder
@@ -90,6 +100,10 @@ unless value? '.redlang [
             ]
         ][
             either _debug [
+                do-trace 102 [
+                    ?? const>download-url
+                ] %install.8.red
+                
                 downloaded-file>out: .download/_debug (const>download-url)
             ][
                 downloaded-file>out: .download (const>download-url)
@@ -108,7 +122,6 @@ unless value? '.redlang [
                 ?? >url
                 ?? >command
             ] %install.5.red
-            
         ][
             >command: rejoin ["install-" param>url]
         ]
@@ -118,32 +131,38 @@ unless value? '.redlang [
                 ?? >command
             ] %install.5.red  
         ]
-      
         do (>command)
         
     ]
 
+    if _debug [
+        do-trace 129 [
+            ?? folder
+        ] %install.8.red
+        
+    ]
     either folder [
         if _debug [
-            do-trace 101 [
+            do-trace 141 [
                 ?? param>download-folder
             ] %install.6.red
         ]
-        param>download-folder: to-red-file form param>download-folder
+        param>download-folder: to-red-file form (param>download-folder)
 
         ..install-url
+        
+        
     ][
 
-
         if _debug [
-            do-trace 130 [
+            do-trace 151 [
                 ?? param>url
             ] %install.5.red
         ]        
 
         either word? param>url [
             either _debug [
-                do-trace 114 [
+                do-trace 158 [
                     ?? param>url
                 ] %install.7.red
                 downloaded-file>out: ..install-keyword/_debug param>url
@@ -152,18 +171,13 @@ unless value? '.redlang [
             ]
             exit ; 0.0.0.1.2.6
         ][
-            either _debug [
-                do-trace 146 [
+            if _debug [
+                do-trace 168 [
                     print "executing ..install-url"
                 ] %install.5.red
-                downloaded-file>out: ..install-url/_debug
-                
-            ][
-                downloaded-file>out: ..install-url
             ]
-            
+            downloaded-file>out: ..install-url
         ]
-
     ]
 
     ; --- run install ---
@@ -173,25 +187,58 @@ unless value? '.redlang [
         ] %install.6.red
         
     ]
-    if .confirm (rejoin ["you want to run the downloaded file:" {"} downloaded-file>out {"}]) [
-        .run (downloaded-file>out)
-    ]
+    ; if .confirm (rejoin ["you want to run the downloaded file:" {"} downloaded-file>out {"}]) [
+    ;     .run (downloaded-file>out)
+    ; ]
 ]
 
 install: function [
     'param>what [word! string! file! path! url!] 
     'param>details [word! string! file! path! url! unset!]
+    /_debug
 ][
+    if _debug [
+        do https://redlang.red/do-trace 
+    ]   
+
+    if _debug [
+        type: type?/word get/any 'param>details
+        do-trace 200 [
+            ?? type
+        ] %install.8.red
+    ]
     switch/default type?/word get/any 'param>details [
         unset! [
-            .install (param>what)
+            either _debug [
+                .install/_debug (param>what)
+            ][
+                .install (param>what)
+            ]
+            
         ]
-        word! string! url! file! [
+        word! string![
             either (param>what) = 'extension [
                 param>details: form :param>details
-                .install-extension (param>details)
+                either _debug [
+                    .install-extension/_debug (param>details)
+                ][
+                    .install-extension (param>details)
+                ]
+                
             ][
                 ;TODO:
+            ]
+        ]
+
+        url! [
+            either _debug [
+                do-trace 218 [
+                    ?? param>what
+                ] %install.8.red
+                
+                .install/_debug (param>what)
+            ][
+                .install (param>what)
             ]
         ]
     ][
