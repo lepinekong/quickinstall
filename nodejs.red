@@ -1,7 +1,8 @@
 Red [
     Title: "install nodejs"
-    UUID: #5904b3d3-1e71-4ed6-a028-5fc81b96813f
+    UUID: #8100d326-292d-4a53-a7c0-ba075728cce6
     Builds: [
+		[0.0.0.1.3 {fixed bug environment>OS: system/platform/OS}]
 		[0.0.0.1.2 {>url: Select >platforms-urls environment>OS}]
 		[0.0.0.1.2 {do-trace 20 [}]
 		[0.0.0.1.2 {>url: https://nodejs.org/dist/v10.14.0/node-v10.14.0-x64.msi}]
@@ -20,7 +21,7 @@ unless value? '.install [
     >platforms-urls: [
         Windows: https://nodejs.org/dist/v10.14.0/node-v10.14.0-x64.msi
     ]
-    environment>OS: system/platform
+    environment>OS: system/platform/OS
 
     >url: Select >platforms-urls environment>OS
 
