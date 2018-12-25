@@ -1,8 +1,9 @@
 Red [
     File: "install"
     Title: "install"
-    UUID: #a528b679-cca1-42ca-8602-5dcff3a72cce
+    UUID: #e3ee09ed-66f2-47ab-b521-9902960c1eb9
     Builds: [
+		[0.0.0.1.2.9 {fixed bug}]
 		[0.0.0.1.2.9 {fixed bug}]
 		[0.0.0.1.2.9 {fixed bug}]
 		[0.0.0.1.2.9 {fixed bug}]
