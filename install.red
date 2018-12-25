@@ -1,8 +1,9 @@
 Red [
     File: "install"
     Title: "install"
-    UUID: #51fb64f6-4cfb-47f7-b33d-b4af78698009
+    UUID: #827155d7-e009-4fd3-afa6-0bfe08f4ce00
     Builds: [
+		[0.0.0.1.2.9 {fixed bug}]
 		[0.0.0.1.2.9 {fixed bug}]
 		[0.0.0.1.2.9 {test OK for ruby}]
 		[0.0.0.1.2.9 {removed if confirmed download in src\.install.red\0.0.0.1\02\install.9.red}]
