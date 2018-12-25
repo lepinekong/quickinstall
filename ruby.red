@@ -1,8 +1,9 @@
 Red [
     Title: "ruby"
     File: "ruby"
-    UUID: #67658f3b-4a83-48b2-86cb-d70a4423897b
+    UUID: #34f6e7d5-be8b-44f7-a580-a1446476400d
     Builds: [
+		[0.0.0.1.1.1 {if object? (environment>OS)}]
 		[0.0.0.1.1.1 {fixed bug environment>OS: system/platform/OS}]
 		[0.0.0.1.1.1 {intial}]
 		[0.0.0.1.1.4 {added builds []}]
@@ -30,7 +31,11 @@ unless value? '.install [
     >platforms-urls: [
         Windows: https://github.com/oneclick/rubyinstaller2/releases/download/rubyinstaller-2.5.3-1/rubyinstaller-devkit-2.5.3-1-x64.exe
     ]
-    environment>OS: system/platform/OS
+    
+    environment>OS: system/platform
+    if object? (environment>OS) [
+        environment>OS: system/platform/OS
+    ]
 
     if _debug [
         do-trace 35 [
