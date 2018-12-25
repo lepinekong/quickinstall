@@ -1,8 +1,9 @@
 Red [
     File: "install"
     Title: "install"
-    UUID: #082e428e-e7d8-42ba-97c6-43dde6ca5894
+    UUID: #ec921dc0-5f2f-46e8-a761-7e32918cec7f
     Builds: [
+		[0.0.0.2.1.1 {fixed bug ?? >url instead of ?? (>url)}]
 		[0.0.0.2.1.1 {do-trace extern>config: load https://quickinstall.red/config/install.config renumbering lines for do-trace}]
 		[0.0.0.2.1.1 {extern>config: load https://quickinstall.red/config/install.config renumbering lines for do-trace}]
 		[0.0.0.2.1.1 {extern>config: load https://quickinstall.red/config/install.config}]
@@ -126,7 +127,7 @@ unless value? '.redlang [
         if _debug [
 
             do-trace 126 [
-                ?? (>url)
+                ?? >url
             ] %install.1.red
             
         ]
