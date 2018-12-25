@@ -1,9 +1,9 @@
 Red [
     File: "install"
     Title: "install"
-    UUID: #fabc7d70-19c3-4f20-9610-fa28c91323db
+    UUID: #43cfb83b-5abd-4080-a8bb-853c2d44fb8f
     Builds: [
-		[0.0.0.1.2.1 {extern>config: load https://quickinstall.red/config/install.config}]
+		[0.0.0.2.1.1 {extern>config: load https://quickinstall.red/config/install.config}]
 		[0.0.0.1.2.9 {fixed bug}]
 		[0.0.0.1.2.9 {fixed bug}]
 		[0.0.0.1.2.9 {fixed bug}]
