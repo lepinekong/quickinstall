@@ -1,8 +1,9 @@
 Red [
     File: "install"
     Title: "install"
-    UUID: #172591ca-3dbe-4506-b686-bb30523cbbee
+    UUID: #67cfba5e-5511-433d-9b84-ec6605b44b8e
     Builds: [
+		[0.0.0.2.1.1 {removed .quickrun [run]}]
 		[0.0.0.2.1.1 {do-trace}]
 		[0.0.0.2.1.1 {fixed bug ?? >url instead of ?? (>url)}]
 		[0.0.0.2.1.1 {do-trace extern>config: load https://quickinstall.red/config/install.config renumbering lines for do-trace}]
@@ -58,7 +59,7 @@ unless value? '.redlang [
     do https://redlang.red
 ]
 .redlang [alias download to-file confirm join]
-.quickrun [run]
+;.quickrun [run]
 
 .install: function [
     'param>url [word! string! file! path! url!] 
