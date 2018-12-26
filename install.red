@@ -1,8 +1,9 @@
 Red [
     File: "install"
     Title: "install"
-    UUID: #2916d08f-c61b-4ed3-883c-982750b9e9ee
+    UUID: #67f521ee-ddeb-40ad-9ed5-39aaeddcf968
     Builds: [
+		[0.0.0.2.1.1 {}]
 		[0.0.0.2.1.1 {source .get-short-filename}]
 		[0.0.0.2.1.1 {removed .quickrun [run]}]
 		[0.0.0.2.1.1 {do-trace}]
@@ -59,8 +60,14 @@ Red [
 unless value? '.redlang [
     do https://redlang.red
 ]
-.redlang [alias download to-file confirm join]
-;.quickrun [run]
+.redlang [alias to-file confirm join]
+
+if value? '.get-short-filename [
+    source .get-short-filename
+    ask "pause install.1.red"
+]
+
+.redlang download
 
 .install: function [
     'param>url [word! string! file! path! url!] 
@@ -72,10 +79,6 @@ unless value? '.redlang [
 
     if _debug [
         do https://redlang.red/do-trace ; 0.0.0.1.01.7: fixed to-trace 
-        if value? '.get-short-filename [
-            source .get-short-filename
-            ask "pause"
-        ]
     ]    
     
     const>download-url: form :param>url
