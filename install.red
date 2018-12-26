@@ -1,8 +1,9 @@
 Red [
     File: "install"
     Title: "install"
-    UUID: #67f521ee-ddeb-40ad-9ed5-39aaeddcf968
+    UUID: #4fd44462-d227-44ce-90ac-29b21768f0af
     Builds: [
+		[0.0.0.2.1.1 {}]
 		[0.0.0.2.1.1 {}]
 		[0.0.0.2.1.1 {source .get-short-filename}]
 		[0.0.0.2.1.1 {removed .quickrun [run]}]
@@ -64,10 +65,15 @@ unless value? '.redlang [
 
 if value? '.get-short-filename [
     source .get-short-filename
-    ask "pause install.1.red"
+    ask "pause 67 install.1.red"
 ]
 
 .redlang download
+
+if value? '.get-short-filename [
+    source .get-short-filename
+    ask "pause 74 install.1.red"
+]
 
 .install: function [
     'param>url [word! string! file! path! url!] 
