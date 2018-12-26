@@ -1,8 +1,9 @@
 Red [
     File: "install"
     Title: "install"
-    UUID: #67cfba5e-5511-433d-9b84-ec6605b44b8e
+    UUID: #2916d08f-c61b-4ed3-883c-982750b9e9ee
     Builds: [
+		[0.0.0.2.1.1 {source .get-short-filename}]
 		[0.0.0.2.1.1 {removed .quickrun [run]}]
 		[0.0.0.2.1.1 {do-trace}]
 		[0.0.0.2.1.1 {fixed bug ?? >url instead of ?? (>url)}]
@@ -71,6 +72,10 @@ unless value? '.redlang [
 
     if _debug [
         do https://redlang.red/do-trace ; 0.0.0.1.01.7: fixed to-trace 
+        if value? '.get-short-filename [
+            source .get-short-filename
+            ask "pause"
+        ]
     ]    
     
     const>download-url: form :param>url
