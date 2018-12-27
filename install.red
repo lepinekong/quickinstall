@@ -1,41 +1,9 @@
 Red [
     File: "install"
     Title: "install"
-    UUID: #f873136a-6a89-4135-b989-d4bf4fb7a907
+    UUID: #3acac9ca-da85-4646-9660-000e4d2b3add
     Builds: [
-		[0.0.0.2.1.1 {}]
-		[0.0.0.2.1.1 {}]
-		[0.0.0.2.1.1 {}]
-		[0.0.0.2.1.1 {}]
-		[0.0.0.2.1.1 {source .get-short-filename}]
-		[0.0.0.2.1.1 {removed .quickrun [run]}]
-		[0.0.0.2.1.1 {do-trace}]
-		[0.0.0.2.1.1 {fixed bug ?? >url instead of ?? (>url)}]
-		[0.0.0.2.1.1 {do-trace extern>config: load https://quickinstall.red/config/install.config renumbering lines for do-trace}]
-		[0.0.0.2.1.1 {extern>config: load https://quickinstall.red/config/install.config renumbering lines for do-trace}]
-		[0.0.0.2.1.1 {extern>config: load https://quickinstall.red/config/install.config}]
-		[0.0.0.1.2.9 {fixed bug}]
-		[0.0.0.1.2.9 {fixed bug}]
-		[0.0.0.1.2.9 {fixed bug}]
-		[0.0.0.1.2.9 {fixed bug}]
-		[0.0.0.1.2.9 {test OK for ruby}]
-		[0.0.0.1.2.9 {removed if confirmed download in src\.install.red\0.0.0.1\02\install.9.red}]
-		[0.0.0.1.2.7 {minor refactor >local-download-folder: to-local-file param>download-folder}]
-		[0.0.0.1.2.6 {install: function [ .install-extension (param>details)}]
-		[0.0.0.1.2.6 {if _debug }]
-		[0.0.0.1.2.6 {exit ; 0.0.0.1.2.6}]
-		[0.0.0.1.2.5 {release}]
-		[0.0.0.1.2.5 {            param>download-folder: to-red-file form param>download-folder}]
-		[0.0.0.1.2.5 {fixed stupid bug []}]
-		[0.0.0.1.2.5 {_debug}]
-		[0.0.0.1.2.5 {_debug}]
-		[0.0.0.1.2.5 {_debug}]
-		[0.0.0.1.2.3 {remoeved ask "install"}]
-		[0.0.0.1.2.3 {temp ask "install"}]
-		[0.0.0.1.2.3 {print ["debug: command" command "cannot be executed"]}]
-		[0.0.0.1.2.2 {initial release}]
-        0.0.0.0.1.6 {adding _debug message}
-        0.0.0.0.1.5 {buggy}        
+		[0.0.0.2.1.1 {#include https://redlang.red/redlang}]
     ]    
     Html-Proxy: https://quickinstall.red/install
     Description: {
@@ -50,18 +18,10 @@ Red [
     ]
     Builds:[
     ]
-    TODO: [
-        Bugs: [
-            1 {failed for 
-            https://download.visualstudio.microsoft.com/download/pr/7010cdb4-ae43-408b-8c9f-5f94101a1c70/3e1ae56a072c7c397f10278d7643b3e9/dotnet-sdk-2.1.403-win-gs-x64.exe
-            on page https://www.microsoft.com/net/learn/dotnet/hello-world-
-            }
-        ]
-    ]
 ]
 
 unless value? '.redlang [
-    do https://redlang.red
+    #include https://redlang.red/redlang
 ]
 .redlang [alias to-file confirm join]
 
