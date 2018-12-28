@@ -1,8 +1,9 @@
 Red [
     File: "get-software-install-config"
     Title: "get-software-install-config"
-    UUID: #92bdcbad-1420-4045-902b-746a420d8938
+    UUID: #ab2f1d4e-7f75-4ebb-be67-87e77d0bec58
     Builds: [
+		[0.0.0.1.1.2 {fixed const>url>softwares-repo: https://quickinstall.red/config/install.config}]
 		[0.0.0.1.1.1 {initial}]
     ]    
     Date-Time: 
@@ -36,11 +37,6 @@ Red [
     ]     
 ]
 
-unless value? '.redlang [
-    do https://redlang.red
-]
-.redlang [alias]
-
 .get-software-install-config: function [
     {Help:
         
@@ -72,10 +68,13 @@ unless value? '.redlang [
         ] %get-software-install-config.1.red
     ]
 
+    ; /  ----------------- config ----------------
+    const>url>softwares-repo: https://quickinstall.red/config/install.config
+
     word>software: to-word form param>software
-    extern>config: load (const>url>softwares-repo)
-    extern>param: select (extern>config) (word>software)
-    return (extern>param)
+    block>extern>config: load (const>url>softwares-repo)
+    ;extern>param: select (extern>config) (word>software)
+    return (block>extern>config)
 ]
 
-.alias .get-software-install-config [get-software-install-config]
+get-software-install-config: :.get-software-install-config
