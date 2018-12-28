@@ -1,8 +1,9 @@
 Red [
     File: "install"
     Title: "install"
-    UUID: #3acac9ca-da85-4646-9660-000e4d2b3add
+    UUID: #cfead2a8-fb26-4893-96d8-37e4d5715d81
     Builds: [
+		[0.0.0.2.2.5 {fixed bug for rstudio. to release}]
 		[0.0.0.2.1.1 {#include https://redlang.red/redlang}]
     ]    
     Html-Proxy: https://quickinstall.red/install
@@ -16,6 +17,12 @@ Red [
         2 {run downloaded file if confirmation}
         2.1 {unzip the file before if necessary}
     ]
+    Bug: {
+install.1.red line 148 :
+>url: https://quickinstall.red/rstudio
+>command: {install-https://download1.rstudio.org/RStudio-1.1.463.exe/_debug}
+pause in install.1.red on line 148...
+    }
     Builds:[
     ]
 ]
@@ -24,6 +31,7 @@ unless value? '.redlang [
     #include https://redlang.red/redlang
 ]
 .redlang [alias to-file confirm join]
+do https://quickinstall.red/get-software-install-config.red
 
 .redlang download
 
@@ -46,7 +54,6 @@ unless value? '.redlang [
             ?? const>download-url
         ] %install.1.red
     ]
-
 
     >builds: [
     ] 
@@ -103,18 +110,40 @@ unless value? '.redlang [
         if error? try [
             do (>url)
         ][
-            ;TODO: load from install.config
-            extern>config: load https://quickinstall.red/config/install.config
-            extern>param: select (extern>config) (param>url)
-            if none? (extern>param) [
-                print ["cannot install" (param>url) ]
+            ;load from install.config
+            word>software: to-word form param>url
+            extern>config>software: .get-software-install-config (word>software)
+
+            if _debug [
+                do-trace 117 [
+                    ?? word>software
+                    ?? extern>config>software
+                ] %install.3.red
+                
+            ]
+            if none? (extern>config>software) [
+                print ["cannot install" (word>software) ]
                 return false
             ]
+            param>url: select (extern>config>software) 'Windows
+            if _debug [
+                do-trace 129 [
+                    ?? param>url
+                ] %install.3.red
+                
+            ]
+            if none? (param>url) [
+                print ["cannot download" (word>software) ]
+                return false            
+            ] 
+            const>download-url: (param>url)
+            downloaded-file>out: ..install-url
+            return (downloaded-file>out)           
+            
         ]
         
-
         either _debug [
-            >command: rejoin ["install-" param>url "/_debug"]
+            >command: rejoin ["install-" (param>url) "/_debug"]
             do-trace 148 [
                 ?? >url
                 ?? >command
@@ -146,8 +175,7 @@ unless value? '.redlang [
         ]
         param>download-folder: to-red-file form (param>download-folder)
 
-        ..install-url
-        
+        downloaded-file>out: ..install-url
         
     ][
 
@@ -184,9 +212,7 @@ unless value? '.redlang [
         ] %install.1.red
         
     ]
-    ; if .confirm (rejoin ["you want to run the downloaded file:" {"} downloaded-file>out {"}]) [
-    ;     .run (downloaded-file>out)
-    ; ]
+
 ]
 
 install: function [
