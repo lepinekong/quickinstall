@@ -1,8 +1,9 @@
 Red [
     File: "get-software-install-config"
     Title: "get-software-install-config"
-    UUID: #ab2f1d4e-7f75-4ebb-be67-87e77d0bec58
+    UUID: #fedd77e5-f065-4a63-847f-46e0b0de9b31
     Builds: [
+		[0.0.0.1.1.3 {fixed bug software-config>out: select (extern>block>config) (word>software)}]
 		[0.0.0.1.1.2 {fixed const>url>softwares-repo: https://quickinstall.red/config/install.config}]
 		[0.0.0.1.1.1 {initial}]
     ]    
@@ -72,9 +73,9 @@ Red [
     const>url>softwares-repo: https://quickinstall.red/config/install.config
 
     word>software: to-word form param>software
-    block>extern>config: load (const>url>softwares-repo)
-    ;extern>param: select (extern>config) (word>software)
-    return (block>extern>config)
+    extern>block>config: load (const>url>softwares-repo)
+    software-config>out: select (extern>block>config) (word>software)
+    return (software-config>out)
 ]
 
 get-software-install-config: :.get-software-install-config
