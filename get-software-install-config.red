@@ -1,8 +1,9 @@
 Red [
     File: "get-software-install-config"
     Title: "get-software-install-config"
-    UUID: #fedd77e5-f065-4a63-847f-46e0b0de9b31
+    UUID: #39ba06fd-2eb9-422b-b1c9-c2bb5f01a221
     Builds: [
+		[0.0.0.1.1.3 {get-software-install alias}]
 		[0.0.0.1.1.3 {fixed bug software-config>out: select (extern>block>config) (word>software)}]
 		[0.0.0.1.1.2 {fixed const>url>softwares-repo: https://quickinstall.red/config/install.config}]
 		[0.0.0.1.1.1 {initial}]
@@ -79,3 +80,4 @@ Red [
 ]
 
 get-software-install-config: :.get-software-install-config
+get-install-config: :.get-software-install-config
