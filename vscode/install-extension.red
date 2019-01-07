@@ -1,21 +1,19 @@
 Red [
     Title: "install-extension.red" 
-    UUID: #a7139b7a-c302-4110-8028-ca82fae22371
+    UUID: #9001c9d0-c952-4485-9d5b-9e651fcd1ef5
     Builds: [
-		[0.0.0.2.2.1 {reformatting}]
-		[0.0.0.2.2 {reformatting}]
-        0.0.0.1.5 
-        { /from-log^/                    /log-file >log-file^/        }
+		[0.0.0.2.2.1 {case arg is an url}]
+		[0.0.0.3.1 {case arg is an url}]
     ]
 ]
 
-    if not value? '.redlang [
-        do https://redlang.red
+    unless value? '.redlang [
+#include https://redlang.red/redlang
     ] 
     .redlang [call-powershell log] 
     
     .install-extension: function [
-        '>extension 
+        '>extension "name or extension url"
         /log-file >log-file 
         /separator >separator 
         /silent 
@@ -34,8 +32,10 @@ Red [
         ] 
         ..log: does [
             .log/separator (__VSCODE_EXTENSION_LOG_FILE__) (>extension) (>separator)
-        ] unless separator [
-            >separator: "(+)"
+        ] 
+        
+        unless separator [
+            >separator: "(+)" ; added extension (-) removed extension
         ] 
         either block? >extension [
             >extensions: >extension 
@@ -45,6 +45,16 @@ Red [
                 ..info-path
             ]
         ] [
+            .section {
+                case arg is an url
+                example: https://marketplace.visualstudio.com/items?itemName=red-auto.red
+            } [
+
+            ]
+            if url? :>extension [
+                parse url [thru "itemName=" copy >extension to end]
+            ]
+
             >extension: form >extension 
             either >extension = "from-log" [
                 unless /log-file [
@@ -74,4 +84,6 @@ Red [
     install-extension: :.install-extension 
     .vscode.install: :.install-extension 
     vscode.install: :.install-extension
+    .install-extensions: :.install-extension
+    install-extensions: :.install-extension
 
