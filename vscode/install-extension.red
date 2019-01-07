@@ -1,9 +1,9 @@
 Red [
     Title: "install-extension.red" 
-    UUID: #9001c9d0-c952-4485-9d5b-9e651fcd1ef5
+    UUID: #5db114c2-53b1-4acc-9425-c6893d33720d
     Builds: [
-		[0.0.0.2.2.1 {case arg is an url}]
-		[0.0.0.3.1 {case arg is an url}]
+		[0.0.0.2.2.2 {case arg is an url}]
+		[0.0.0.3.1 {removed .section}]
     ]
 ]
 
@@ -45,10 +45,10 @@ Red [
                 ..info-path
             ]
         ] [
-            .section {
-                case arg is an url
-                example: https://marketplace.visualstudio.com/items?itemName=red-auto.red
-            } [
+            ; .section {
+            ;     case arg is an url
+            ;     example: https://marketplace.visualstudio.com/items?itemName=red-auto.red
+            ; } [
 
             ]
             if url? :>extension [
