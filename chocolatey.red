@@ -1,8 +1,9 @@
 Red [
     Title: "chocolatey"
     File: "chocolatey"
-    UUID: #58a7840c-77a4-4f04-aea9-f34ed5a4947e
+    UUID: #6123d56f-6836-4e29-b4fb-f917b822688e
     Builds: [
+		[0.0.0.1.1.2 {bypass policy}]
 		[0.0.0.1.1.2 {added bypass policy see https://stackoverflow.com/questions/47861537/choco-command-not-recognized-when-run-as-administrator-on-windows?rq=1}]
 		[0.0.0.1.1.1 {initial build}]
 		[0.0.0.1.1.4 {added builds []}]
