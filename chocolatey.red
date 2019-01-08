@@ -1,8 +1,9 @@
 Red [
     Title: "chocolatey"
     File: "chocolatey"
-    UUID: #6123d56f-6836-4e29-b4fb-f917b822688e
+    UUID: #fbfb1711-83dc-43b6-a9a5-e6993c5a8153
     Builds: [
+		[0.0.0.1.1.3 {Set-ExecutionPolicy Bypass -Scope Process -Force;}]
 		[0.0.0.1.1.2 {bypass policy}]
 		[0.0.0.1.1.2 {added bypass policy see https://stackoverflow.com/questions/47861537/choco-command-not-recognized-when-run-as-administrator-on-windows?rq=1}]
 		[0.0.0.1.1.1 {initial build}]
@@ -31,7 +32,7 @@ unless value? '.install [
 .install-chocolatey: function[
     /_debug
 ][
-    call/show {powershell -noprofile -ExecutionPolicy Bypass -command "&{ start-process powershell -ArgumentList '-noprofile -command \"iex ((New-Object System.Net.WebClient).DownloadString(''https://chocolatey.org/install.ps1''))\"' -verb RunAs}"}
+    call/show {powershell -noprofile -ExecutionPolicy Bypass -command "&{ start-process powershell -ArgumentList '-noprofile -command \"Set-ExecutionPolicy Bypass -Scope Process -Force;iex ((New-Object System.Net.WebClient).DownloadString(''https://chocolatey.org/install.ps1''))\"' -verb RunAs}"}
 ]
 
 install-chocolatey: :.install-chocolatey
