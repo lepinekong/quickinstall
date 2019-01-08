@@ -1,8 +1,9 @@
 Red [
     Title: "chocolatey"
     File: "chocolatey"
-    UUID: #9c4bb608-58db-4cce-adca-448ddf31cdbe
+    UUID: #58a7840c-77a4-4f04-aea9-f34ed5a4947e
     Builds: [
+		[0.0.0.1.1.2 {added bypass policy see https://stackoverflow.com/questions/47861537/choco-command-not-recognized-when-run-as-administrator-on-windows?rq=1}]
 		[0.0.0.1.1.1 {initial build}]
 		[0.0.0.1.1.4 {added builds []}]
     ]
@@ -29,7 +30,7 @@ unless value? '.install [
 .install-chocolatey: function[
     /_debug
 ][
-    call/show {powershell -noprofile -command "&{ start-process powershell -ArgumentList '-noprofile -command \"iex ((New-Object System.Net.WebClient).DownloadString(''https://chocolatey.org/install.ps1''))\"' -verb RunAs}"}
+    call/show {powershell -noprofile -ExecutionPolicy Bypass -command "&{ start-process powershell -ArgumentList '-noprofile -command \"iex ((New-Object System.Net.WebClient).DownloadString(''https://chocolatey.org/install.ps1''))\"' -verb RunAs}"}
 ]
 
 install-chocolatey: :.install-chocolatey
