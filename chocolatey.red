@@ -1,8 +1,13 @@
 Red [
     Title: "chocolatey"
     File: "chocolatey"
-    UUID: #fbfb1711-83dc-43b6-a9a5-e6993c5a8153
+    Build-Purpose: {Test if choco is already installed: 
+    see https://stackoverflow.com/questions/48144104/powershell-script-to-install-chocolatey-and-a-list-of-packages
+    Test-Path -Path "$env:ProgramData\Chocolatey"
+    }
+    UUID: #1b3c217b-a68f-45cf-a0ad-8f09d6741d7a
     Builds: [
+		[0.0.0.1.1.4 {release}]
 		[0.0.0.1.1.3 {Set-ExecutionPolicy Bypass -Scope Process -Force;}]
 		[0.0.0.1.1.2 {bypass policy}]
 		[0.0.0.1.1.2 {added bypass policy see https://stackoverflow.com/questions/47861537/choco-command-not-recognized-when-run-as-administrator-on-windows?rq=1}]
@@ -25,14 +30,44 @@ Red [
     ]    
 ]
 
-unless value? '.install [
-    do https://quickinstall.red
+unless value? '.redlang [
+#include https://redlang.red/redlang    
 ]
+
+.redlang [call-powershell confirm]
+
 
 .install-chocolatey: function[
     /_debug
 ][
-    call/show {powershell -noprofile -ExecutionPolicy Bypass -command "&{ start-process powershell -ArgumentList '-noprofile -command \"Set-ExecutionPolicy Bypass -Scope Process -Force;iex ((New-Object System.Net.WebClient).DownloadString(''https://chocolatey.org/install.ps1''))\"' -verb RunAs}"}
+    choco-installed?: .call-powershell/out {Test-Path -Path "$env:ProgramData\Chocolatey"}
+    choco-installed?: to-logic (replace choco-installed? "^/" "")
+
+    ..do-install: function [][
+        call/show {powershell -noprofile -ExecutionPolicy Bypass -command "&{ start-process powershell -ArgumentList '-noprofile -command \"Set-ExecutionPolicy Bypass -Scope Process -Force;iex ((New-Object System.Net.WebClient).DownloadString(''https://chocolatey.org/install.ps1''))\"' -verb RunAs}"}
+        return true        
+    ]
+
+    ..do-abort: function[][
+        print "abort install."
+        return false
+    ]
+
+    either choco-installed? [
+        print "chocolatey is already installed."
+        if not .confirm "re-installation" [
+            return ..do-abort
+            
+        ]
+    ][
+        if not .confirm "installation of chocolatey" [
+            return ..do-abort
+        ]
+    ]
+
+    return ..do-install
+
 ]
 
 install-chocolatey: :.install-chocolatey
+install-choco: :.install-chocolatey
