@@ -15,7 +15,7 @@ Red [
         Date: 2018-12-02
         Location: 'Cambodia
         Builds: [
-		[0.0.0.1.1.3 {abort downloading" "https://dotnet.microsoft.com/learn/dotnet/hello-world-tutorial"}]
+		    [0.0.0.1.1.3 {abort downloading" "https://dotnet.microsoft.com/learn/dotnet/hello-world-tutorial"}]
             [0.0.0.1.1.2 {>url: Select >platforms-urls environment>OS}]
             [0.0.0.1.1.1 {initial build}]
         ]

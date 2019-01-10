@@ -1,14 +1,14 @@
 Red [
     Title: "install-extension.red" 
-    UUID: #5db114c2-53b1-4acc-9425-c6893d33720d
+    UUID: #8258af79-7da0-48df-8c2f-82a84a7bca00
     Builds: [
-		[0.0.0.2.2.2 {case arg is an url}]
-		[0.0.0.3.1 {removed .section}]
+		[0.0.0.2.2.3 {revert to do https://redlang.red}]
+		[0.0.0.1.1 {revert to do https://redlang.red}]
     ]
 ]
 
     unless value? '.redlang [
-#include https://redlang.red/redlang
+        do https://redlang.red
     ] 
     .redlang [call-powershell log] 
     
