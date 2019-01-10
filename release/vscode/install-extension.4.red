@@ -1,18 +1,15 @@
 Red [
     Title: "install-extension.red" 
-    UUID: #388d5a03-3177-475f-803c-9b2020cf6cc8
-    Build-purpose: {
-        install-extension with url
-    }
+    UUID: #fbb4caaa-5742-46a8-b11c-b6770b026a1a
     Builds: [
-		[0.0.0.2.2.2 {url support}]
 		[0.0.0.2.2.4 {revert to src\vscode\install-extension.red\0.0.0.3\01\install-extension.1.red}]
 		[0.0.0.2.2.1 {case arg is an url}]
 		[0.0.0.3.1 {case arg is an url}]
     ]
 ]
+
     unless value? '.redlang [
-        do https://redlang.red/redlang
+#include https://redlang.red/redlang
     ] 
     .redlang [call-powershell log] 
     
@@ -49,9 +46,9 @@ Red [
                 ..info-path
             ]
         ] [
-            ~url: :>extension
-            if url? ~url [
-                parse ~url [thru "itemName=" copy >extension to end]
+
+            if url? :>extension [
+                parse url [thru "itemName=" copy >extension to end]
             ]
 
             >extension: form >extension 
@@ -72,11 +69,8 @@ Red [
                     print ["log file" clean-path >log-file "doesn't exist"]
                 ]
             ] [
-                powershell-command: rejoin ["code --install-extension " >extension] 
-                ~out: .call-powershell/out powershell-command
-                unless find ~out "is already installed" [
-                    ..log 
-                ]
+                powershell-command: rejoin ["code --install-extension " >extension] .call-powershell/out powershell-command 
+                ..log 
                 unless silent [
                     ..info-path
                 ]
@@ -88,5 +82,4 @@ Red [
     vscode.install: :.install-extension
     .install-extensions: :.install-extension
     install-extensions: :.install-extension
-
 
