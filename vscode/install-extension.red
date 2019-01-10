@@ -1,11 +1,11 @@
 Red [
     Title: "install-extension.red" 
-    UUID: #388d5a03-3177-475f-803c-9b2020cf6cc8
+    UUID: #e971d7ad-a62c-4d17-a675-80c807525f25
     Build-purpose: {
         install-extension with url
     }
     Builds: [
-		[0.0.0.2.2.2 {url support}]
+		[0.0.0.2.2.3 {refined comment}]
 		[0.0.0.2.2.4 {revert to src\vscode\install-extension.red\0.0.0.3\01\install-extension.1.red}]
 		[0.0.0.2.2.1 {case arg is an url}]
 		[0.0.0.3.1 {case arg is an url}]
