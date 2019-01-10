@@ -1,8 +1,9 @@
 Red [
     File: "install"
     Title: "install"
-    UUID: #cfead2a8-fb26-4893-96d8-37e4d5715d81
+    UUID: #81ac0331-a490-43f2-8008-af67bcce3f9a
     Builds: [
+		[0.0.0.2.2.2 {revert to do https://redlang.red/redlang}]
 		[0.0.0.2.2.5 {fixed bug for rstudio. to release}]
 		[0.0.0.2.1.1 {#include https://redlang.red/redlang}]
     ]    
@@ -17,23 +18,15 @@ Red [
         2 {run downloaded file if confirmation}
         2.1 {unzip the file before if necessary}
     ]
-    Bug: {
-install.1.red line 148 :
->url: https://quickinstall.red/rstudio
->command: {install-https://download1.rstudio.org/RStudio-1.1.463.exe/_debug}
-pause in install.1.red on line 148...
-    }
-    Builds:[
-    ]
 ]
 
 unless value? '.redlang [
-    #include https://redlang.red/redlang
+    do https://redlang.red/redlang
 ]
-.redlang [alias to-file confirm join]
-do https://quickinstall.red/get-software-install-config.red
-
-.redlang download
+.redlang [alias to-file confirm join download]
+unless value? '.get-software-install-config [
+    do https://quickinstall.red/get-software-install-config.red
+]
 
 .install: function [
     'param>url [word! string! file! path! url!] 
@@ -69,14 +62,14 @@ do https://quickinstall.red/get-software-install-config.red
         /folder
     ][
         if _debug [
-            do-trace 94 [
+            do-trace 64 [
                 ?? const>download-url
             ] %install.1.red
             
         ]
         either folder [
-            param>download-folder: to-red-file form param>download-folder
-            >local-download-folder: to-local-file param>download-folder
+            param>download-folder: to-red-file form (param>download-folder)
+            >local-download-folder: to-local-file (param>download-folder)
             either _debug [
                 downloaded-file>out: .download/folder/_debug (const>download-url) (>local-download-folder)
             ][
@@ -84,7 +77,7 @@ do https://quickinstall.red/get-software-install-config.red
             ]
         ][
             either _debug [
-                do-trace 109 [
+                do-trace 79 [
                     ?? const>download-url
                 ] %install.1.red
                 
@@ -101,7 +94,7 @@ do https://quickinstall.red/get-software-install-config.red
 
         if _debug [
 
-            do-trace 126 [
+            do-trace 96 [
                 ?? >url
             ] %install.1.red
             
@@ -115,7 +108,7 @@ do https://quickinstall.red/get-software-install-config.red
             extern>config>software: .get-software-install-config (word>software)
 
             if _debug [
-                do-trace 117 [
+                do-trace 110 [
                     ?? word>software
                     ?? extern>config>software
                 ] %install.3.red
@@ -127,7 +120,7 @@ do https://quickinstall.red/get-software-install-config.red
             ]
             param>url: select (extern>config>software) 'Windows
             if _debug [
-                do-trace 129 [
+                do-trace 122 [
                     ?? param>url
                 ] %install.3.red
                 
@@ -144,7 +137,7 @@ do https://quickinstall.red/get-software-install-config.red
         
         either _debug [
             >command: rejoin ["install-" (param>url) "/_debug"]
-            do-trace 148 [
+            do-trace 139 [
                 ?? >url
                 ?? >command
             ] %install.1.red
@@ -153,7 +146,7 @@ do https://quickinstall.red/get-software-install-config.red
         ]
         
         if _debug [
-            do-trace 157 [
+            do-trace 147 [
                 ?? >command
             ] %install.1.red  
         ]
@@ -162,14 +155,14 @@ do https://quickinstall.red/get-software-install-config.red
     ]
 
     if _debug [
-        do-trace 166 [
+        do-trace 157 [
             ?? folder
         ] %install.1.red
         
     ]
     either folder [
         if _debug [
-            do-trace 173 [
+            do-trace 164 [
                 ?? param>download-folder
             ] %install.1.red
         ]
@@ -180,14 +173,14 @@ do https://quickinstall.red/get-software-install-config.red
     ][
 
         if _debug [
-            do-trace 185 [
+            do-trace 175 [
                 ?? param>url
             ] %install.1.red
         ]        
 
         either word? param>url [
             either _debug [
-                do-trace 192 [
+                do-trace 182 [
                     ?? param>url
                 ] %install.1.red
                 downloaded-file>out: ..install-keyword/_debug param>url
@@ -197,7 +190,7 @@ do https://quickinstall.red/get-software-install-config.red
             exit ; 0.0.0.1.2.6
         ][
             if _debug [
-                do-trace 202 [
+                do-trace 192 [
                     print "executing ..install-url"
                 ] %install.1.red
             ]
@@ -207,7 +200,7 @@ do https://quickinstall.red/get-software-install-config.red
 
     ; --- run install ---
     if _debug [
-        do-trace 212 [
+        do-trace 202 [
             ?? downloaded-file>out
         ] %install.1.red
         
@@ -226,7 +219,7 @@ install: function [
 
     if _debug [
         type: type?/word get/any 'param>details
-        do-trace 233 [
+        do-trace 221 [
             ?? type
         ] %install.1.red
     ]
@@ -255,7 +248,7 @@ install: function [
 
         url! [
             either _debug [
-                do-trace 262 [
+                do-trace 250 [
                     ?? param>what
                 ] %install.1.red
                 
