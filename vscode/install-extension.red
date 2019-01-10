@@ -1,14 +1,15 @@
 Red [
     Title: "install-extension.red" 
-    UUID: #8258af79-7da0-48df-8c2f-82a84a7bca00
+    UUID: #fbb4caaa-5742-46a8-b11c-b6770b026a1a
     Builds: [
-		[0.0.0.2.2.3 {revert to do https://redlang.red}]
-		[0.0.0.1.1 {revert to do https://redlang.red}]
+		[0.0.0.2.2.4 {revert to src\vscode\install-extension.red\0.0.0.3\01\install-extension.1.red}]
+		[0.0.0.2.2.1 {case arg is an url}]
+		[0.0.0.3.1 {case arg is an url}]
     ]
 ]
 
     unless value? '.redlang [
-        do https://redlang.red
+#include https://redlang.red/redlang
     ] 
     .redlang [call-powershell log] 
     
@@ -45,12 +46,7 @@ Red [
                 ..info-path
             ]
         ] [
-            ; .section {
-            ;     case arg is an url
-            ;     example: https://marketplace.visualstudio.com/items?itemName=red-auto.red
-            ; } [
 
-            ]
             if url? :>extension [
                 parse url [thru "itemName=" copy >extension to end]
             ]
