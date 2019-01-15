@@ -1,10 +1,11 @@
 Red [
     Title: "install-extension.red" 
-    UUID: #ed57f345-97b6-4e6d-9c25-50fc667a623a
+    UUID: #67c9b23e-52cc-422b-a76e-57c0b334a81d
     Build-purpose: {
         install-extension from remote log file
     }
     Builds: [
+		[0.0.0.2.2.6 {u}]
 		[0.0.0.2.2.6 {return true}]
 		[0.0.0.2.2.4 {revert to src\vscode\install-extension.red\0.0.0.3\01\install-extension.1.red}]
 		[0.0.0.2.2.1 {case arg is an url}]
@@ -56,7 +57,7 @@ Red [
                 ] unless silent [
                     ..info-path
                 ]
-            ] {------------- case arg is a block of extensions ------------/}
+            ] {------------- case arg is a block of extensions ------------/} 
  
         ] [
             .section {/------------- case arg is a single extension ------------} [
@@ -114,6 +115,7 @@ Red [
             ] {------------- case arg is a single extension ------------/}
             return true
         ]
+        return true
     ] 
     
     install-extension: :.install-extension 
