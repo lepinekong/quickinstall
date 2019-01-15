@@ -1,10 +1,11 @@
 Red [
     Title: "install-extension.red" 
-    UUID: #67c9b23e-52cc-422b-a76e-57c0b334a81d
+    UUID: #80703ebc-675d-4973-9bd1-a885f4e88e81
     Build-purpose: {
         install-extension from remote log file
     }
     Builds: [
+		[0.0.0.2.2.6 {u}]
 		[0.0.0.2.2.6 {u}]
 		[0.0.0.2.2.6 {return true}]
 		[0.0.0.2.2.4 {revert to src\vscode\install-extension.red\0.0.0.3\01\install-extension.1.red}]
