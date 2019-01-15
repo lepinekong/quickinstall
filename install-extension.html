@@ -43,7 +43,8 @@ install-extension 2gua.rainbow-brackets
 </pre></p>
 <p>or:</p>
 <p><pre class='code-listing'>
-install-extension [
+do https://quickinstall.red/install-extension
+    install-extension [
     "2gua.rainbow-brackets" ; !!! any name starting with number must be double-quoted
     inu1255.easy-snippet
 ]
@@ -54,11 +55,13 @@ install-extension [
 
 <p>example:</p>
 <p><pre class='code-listing'>
-install-extension https://marketplace.visualstudio.com/items?itemName=inu1255.easy-snippet
+do https://quickinstall.red/install-extension
+    install-extension https://marketplace.visualstudio.com/items?itemName=inu1255.easy-snippet
 </pre></p>
 <p>or:</p>
 <p><pre class='code-listing'>
-install-extension [
+do https://quickinstall.red/install-extension
+    install-extension [
     https://marketplace.visualstudio.com/items?itemName=2gua.rainbow-brackets
     https://marketplace.visualstudio.com/items?itemName=inu1255.easy-snippet
 ]
