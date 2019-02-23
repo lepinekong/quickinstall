@@ -5,9 +5,8 @@ Red [
     }
 ]
 
-unless value? '.redlang [
-    do https://redlang.red
+unless value? '.quickinstall [
+    do https://redlang.red/quickinstall
 ]
 
-.quickinstall/load-only [install]
-
+.quickinstall/load-only [install] ; load install.red
